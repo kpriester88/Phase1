@@ -1,0 +1,7 @@
+echo /var/log/syslog 
+echo /opt/alpha/mission.txt
+echo "MISSION SECURE: The system is yours. Do not fear the dark"
+echo /var/tmp/.blackout/token.txt
+echo TOKEN 9948-ABX-77
+
+
