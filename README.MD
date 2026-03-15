@@ -1,7 +1,7 @@
 🛡️ Project: Operation Clean Sweep (Incident Response)
 ## 📑 Table of Contents
 * [Overview](#overview)
-* [Tech Stack & Tools](#-tech-stack--tools)
+* [Tech Stack & Tools](#tech-stack--tools)
 * [Core Competencies](#core-competencies-demonstrated)
 * [Final Artifact](#final-artifact)
 * [Lessons Learned](#-key-takeaway)
