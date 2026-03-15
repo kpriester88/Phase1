@@ -9,7 +9,10 @@
 # Overview
 In this technical simulation, I acted as a Security Analyst performing a post-mortem on a compromised Linux server. The mission required navigating a sabotaged directory structure, restoring system access, and performing forensic data extraction on a 5,000-line corrupted log file.
 
-# Core Competencies Demonstrated:
+# Tech Stack & Tools
+For this project, Oracle VirtualBox was used along with a remote SSH connection to Visual Studio Code. This simulated a headless virtual machine and provided a safe environment to manipulate files. 
+
+# Core Competencies Demonstrated
 System Navigation & Discovery: Located hidden forensic artifacts (.evidence_cache) within restricted system paths (/var/tmp).
 
 Permission & Ownership Recovery: Restored system access using chmod (numeric modes 400/500) and reclaimed file ownership via chown to bypass attacker-imposed lockouts.
