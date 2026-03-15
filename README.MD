@@ -1,6 +1,6 @@
 🛡️ Project: Operation Clean Sweep (Incident Response)
 ## 📑 Table of Contents
-* [Overview](#overview)
+* [Overview](#In this technical simulation, I acted as a Security Analyst performing a post-mortem on a compromised Linux server. The mission required navigating a sabotaged directory structure, restoring system access, and performing forensic data extraction on a 5,000-line corrupted log file.)
 * [Tech Stack & Tools](#-tech-stack--tools)
 * [Core Competencies](#core-competencies-demonstrated)
 * [Final Artifact](#final-artifact)
