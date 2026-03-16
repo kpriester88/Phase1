@@ -1,6 +1,7 @@
 # Lab Report: Phase 1-W1D1 — Terminal Velocity
 Subject: Headless Linux Navigation & Filesystem Mastery 
 Status: Completed. 
+<br></br>
 
 1. Executive Summary
 This lab focused on transitioning from a Graphical User Interface (GUI) to a Command Line Interface (CLI) environment. The primary goal was to navigate the Linux Filesystem Hierarchy Standard (FHS) using "mental sonar" (commands) rather than visual icons.
@@ -12,7 +13,12 @@ During this lab, the Linux filesystem was treated as a structured office buildin
 
 I reinforced the fundamental grammar of the Linux terminal to avoid syntax errors:
 
-$$\text{Command} \rightarrow \text{Flag(s)} \rightarrow \text{Argument}$$CommandPurposeCommon Flags UsedpwdPrint Working Directory: "Where am I in the building?"N/AlsList: "Turn on the lights."-a (show hidden), -l (long format)cdChange Directory: "Move to another room.".. (go up one level), / (go to lobby)catConcatenate: "Read the contents of a file/memo."N/A
+| Command | Purpose                                                | Common Flags Used                     |
+| ------- | ------------------------------------------------------ | ------------------------------------- |
+| pwd     | Print Working Directory: "Where am I in the building?" | N/A                                   |
+| ls      | List: "Turn on the lights."                            | \-a (show hidden), -l (long format)   |
+| cd      | Change Directory: "Move to another room."              | .. (go up one level), / (go to lobby) |
+| cat     | Concatenate: "Read the contents of a file/memo."       | N/A                                   |
 
 4. Key Concepts Mastered
 
