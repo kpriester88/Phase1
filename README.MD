@@ -1,3 +1,89 @@
+# Lab Report: Phase 1-W1D1 — Terminal Velocity
+Subject: Headless Linux Navigation & Filesystem Mastery 
+Status: Completed. 
+
+1. Executive Summary
+This lab focused on transitioning from a Graphical User Interface (GUI) to a Command Line Interface (CLI) environment. The primary goal was to navigate the Linux Filesystem Hierarchy Standard (FHS) using "mental sonar" (commands) rather than visual icons.
+
+2. The Mental Model: The Office Building
+During this lab, the Linux filesystem was treated as a structured office building to ensure logical navigation:The Root (/): The Lobby. The starting point for all paths.The Tool Shed (/bin): Where the essential binaries (executable commands) are kept.The Manager’s Office (/etc): Where system-wide configuration files are stored.The Employee Desks (/home): My personal workspace and user directory.
+
+3. Command Syntax & Grammar
+
+I reinforced the fundamental grammar of the Linux terminal to avoid syntax errors:
+
+$$\text{Command} \rightarrow \text{Flag(s)} \rightarrow \text{Argument}$$CommandPurposeCommon Flags UsedpwdPrint Working Directory: "Where am I in the building?"N/AlsList: "Turn on the lights."-a (show hidden), -l (long format)cdChange Directory: "Move to another room.".. (go up one level), / (go to lobby)catConcatenate: "Read the contents of a file/memo."N/A
+
+4. Key Concepts Mastered
+
+Absolute vs. Relative Paths
+
+Absolute Paths: Navigating by starting from the Lobby (/). (e.g., /home/student/evidence)Relative Paths: Navigating based on my current "desk." (e.g., cd ../reports)
+
+The "Hidden" Room
+
+I learned that files starting with a . are hidden from standard view. To "see through the walls," I must use the specific flag that reveals all contents.
+
+5. Reflections from the Dark Room
+
+Hardest part: Resisting the urge to use the VS Code file explorer.
+Breakthrough: Realizing that the terminal output is the only truth. If the terminal says a file doesn't exist, I am either in the wrong room or using the wrong path.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 🛡️ Project: Operation Clean Sweep (Incident Response)
 ## 📑 Table of Contents
 * [Overview](#overview)
