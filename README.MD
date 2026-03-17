@@ -37,6 +37,8 @@ I learned that files starting with a . are hidden from standard view. To "see th
 5. Reflections from the Dark Room
 *Hardest part: Resisting the urge to use the VS Code file explorer.
 *Breakthrough: Realizing that the terminal output is the only truth. If the terminal says a file doesn't exist, I am either in the wrong room or using the wrong path.
+<br></br>
+<br></br>
 
 
 
@@ -93,7 +95,7 @@ I learned that files starting with a . are hidden from standard view. To "see th
 
 
 
-🛡️ Project: Operation Clean Sweep (Incident Response)
+#🛡️ Project: Operation Clean Sweep (Incident Response)
 ## 📑 Table of Contents
 * [Overview](#overview)
 * [Tech Stack & Tools](#tech-stack--tools)
