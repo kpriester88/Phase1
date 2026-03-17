@@ -5,7 +5,7 @@ Status: Completed.
 <br></br>
 
 1. Executive Summary
-This lab focused on transitioning from a Graphical User Interface (GUI) to a Command Line Interface (CLI) environment. The primary goal was to navigate the Linux Filesystem Hierarchy Standard (FHS) using "mental sonar" (commands) rather than visual icons.
+*This lab focused on transitioning from a Graphical User Interface (GUI) to a Command Line Interface (CLI) environment. The primary goal was to navigate the Linux Filesystem Hierarchy Standard (FHS) using "mental sonar" (commands) rather than visual icons.
 
 2. The Mental Model: The Office Building
 During this lab, the Linux filesystem was treated as a structured office building to ensure logical navigation:
@@ -15,7 +15,6 @@ During this lab, the Linux filesystem was treated as a structured office buildin
 *The Employee Desks (/home): My personal workspace and user directory.
 
 3. Command Syntax & Grammar
-
 I reinforced the fundamental grammar of the Linux terminal to avoid syntax errors:
 
 | Command | Purpose                                                | Common Flags Used                     |
