@@ -1,5 +1,6 @@
 # Lab Report: Phase 1-W1D1 — Terminal Velocity
 Subject: Headless Linux Navigation & Filesystem Mastery 
+
 Status: Completed. 
 <br></br>
 
@@ -7,7 +8,11 @@ Status: Completed.
 This lab focused on transitioning from a Graphical User Interface (GUI) to a Command Line Interface (CLI) environment. The primary goal was to navigate the Linux Filesystem Hierarchy Standard (FHS) using "mental sonar" (commands) rather than visual icons.
 
 2. The Mental Model: The Office Building
-During this lab, the Linux filesystem was treated as a structured office building to ensure logical navigation:The Root (/): The Lobby. The starting point for all paths.The Tool Shed (/bin): Where the essential binaries (executable commands) are kept.The Manager’s Office (/etc): Where system-wide configuration files are stored.The Employee Desks (/home): My personal workspace and user directory.
+During this lab, the Linux filesystem was treated as a structured office building to ensure logical navigation:
+The Root (/): The Lobby. The starting point for all paths.
+The Tool Shed (/bin): Where the essential binaries (executable commands) are kept.
+The Manager’s Office (/etc): Where system-wide configuration files are stored.
+The Employee Desks (/home): My personal workspace and user directory.
 
 3. Command Syntax & Grammar
 
