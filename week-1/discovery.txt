@@ -1,0 +1,7 @@
+Log Path: /var/log/syslog 
+Secret Message Path: /opt/alpha/mission.txt
+Secret Message: "MISSION SECURE: The system is yours. Do not fear the dark."
+Secret Token Path: /var/tmp/.blackout/token.txt
+Secret Token: 9948-ABX-77
+
+
