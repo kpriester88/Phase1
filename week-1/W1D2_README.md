@@ -1,51 +1,52 @@
-# 🛡️ Lab: T1-M1-S02 | The Access Control Matrix
+# 🛡️ My Journey into the Access Control Matrix (T1-M1-S02)
 
-Welcome, Initiate. You are now entering the realm of **The Keymaster**. In Linux, files are protected by a specific set of locks. To pass this lab, you must learn to forge the correct keys using the **Octal Decoder Ring**.
+This repository documents my descent into the core of Linux file permissions. As a cybersecurity student, I realized early on that if you don't understand the **Keymaster’s** rules, the system will shut you out. 
 
----
-
-## 🔑 The Decoder Ring
-Permissions are calculated by summing the values of the bits you wish to grant. Every file has three tiers of access: **User (Owner)**, **Group**, and **Others**.
-
-| Permission | Symbol | Octal Value |
-| :--- | :--- | :--- |
-| **Read** | `r` | **4** |
-| **Write** | `w` | **2** |
-| **Execute** | `x` | **1** |
-| **None** | `-` | **0** |
+Below is the breakdown of how I learned to decode the binary-to-octal logic that governs every file in a Linux environment.
 
 ---
 
-## 🛠️ Mission 1: The Sum of Power
-Before you can run a script, you must grant yourself the right to execute it. 
+## 🔑 Cracking the Decoder Ring
+When I first saw `rwxr-xr-x`, it looked like alphabet soup. I had to stop thinking in letters and start thinking in **bits**. I learned that every permission is actually a mathematical sum of three specific values:
 
-**The Scenario:** You have a file named `secret_vault.sh`. Currently, your User account has **Read (4)** and **Write (2)** access. You need to add **Execute** access for yourself while leaving Group and Others with zero permissions.
+| Permission | Symbol | Value | My Mental Note |
+| :--- | :--- | :--- | :--- |
+| **Read** | `r` | **4** | "I can see the data." |
+| **Write** | `w` | **2** | "I can change the data." |
+| **Execute** | `x` | **1** | "I can run the program." |
+
+---
+
+## 🛠️ Phase 1: The "Sum of Power" Struggle
+My first real challenge was a script called `secret_vault.sh`. I could read it and write to it, but the system wouldn't let me run it. 
+
+**The Problem:** My User account had `Read (4)` and `Write (2)`.
+**The Mission:** Add `Execute (1)` without losing what I already had.
 
 > [!TIP]
-> **The Keymaster's Hint:** Look at your Decoder Ring. What numerical value represents **Execute**? If you want to keep **Read (4)** and **Write (2)** for the User, what is the new total sum for that first digit?
-
-**The Command Structure:** `chmod [User][Group][Others] secret_vault.sh`
+> **My Breakthrough:** I realized I didn't just pick a new number; I had to **sum** them. If I wanted all three, I had to calculate $4 + 2 + 1$. Finding that total for the first digit was the moment the "Octal" system finally clicked for me.
 
 ---
 
-## 🛠️ Mission 2: Facing the "Permission Denied" Wall
-Sometimes, even if you know the correct math, the system will bar your path with a **Permission Denied** error. This happens when you try to modify files owned by the system (Root).
+## 🛠️ Phase 2: Hitting the "Permission Denied" Wall
+Even after I mastered the math, I hit a wall. I tried to modify a system log, and the terminal spit back: `Permission Denied`. 
 
-**The Scenario:** You are trying to change permissions on a restricted system log, but Linux is blocking you.
-
-> [!CAUTION]
-> **The Keymaster's Hint:** Linux is blocking you because you are a standard user trying to modify a restricted file. What command acts as the **"Master Key"** to temporarily elevate your privileges to root? (Hint: It precedes your `chmod` command).
-
----
-
-## 🧪 Knowledge Check
-To complete your entry into the Access Control Matrix, calculate the 3-digit octal codes for these scenarios:
-
-1.  **Full Access for Everyone:** (Read + Write + Execute) for all three tiers.
-2.  **The Secure Script:** User can do everything; Group and Others can only Read and Execute.
-3.  **The Private Note:** User can Read and Write; no one else can see it.
+**The Realization:** I was a "standard user" trying to touch "root" territory. 
+**The Solution:** I had to find the **"Master Key."** > [!IMPORTANT]
+> I learned that even if my `chmod` math was perfect, I needed a prefix to tell the system: *"I have the authority to do this."* Finding that specific command felt like finally getting the keys to the kingdom. It’s a reminder that in security, identity is just as important as the command itself.
 
 ---
 
-### 🛡️ Validation
-Once you have calculated your codes, apply them in your terminal. Use `ls -l` to see if your "bits" match your intent.
+## 🧪 My Final Knowledge Checks
+I forced myself to calculate these manually before checking the man pages. These are the "keys" I had to forge to pass the module:
+
+1.  **The "Open Door" (Full Access):** What happens when you sum (4+2+1) for the User, Group, and Others?
+2.  **The "Shielded Script":** Giving myself full power (7), but restricting the Group and Others to only "Read and Execute." (What is 4 + 1?)
+3.  **The "Ghost Note":** A file only I can see and edit, leaving the rest of the world (Group/Others) at a total of 0.
+
+---
+
+### 🛡️ Final Reflection
+Mastering `chmod` wasn't about typing numbers; it was about understanding the **Access Control Matrix**. Every time I run `ls -l` now, I don't see letters—I see the mathematical barriers I've learned to build and break.
+
+**Current Status:** Permission Granted.
