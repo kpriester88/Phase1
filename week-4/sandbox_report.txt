@@ -1,6 +1,6 @@
 ==================================================
 SESSION 10: SANDBOX DETONATION REPORT
-Operator: halfcursive
+Operator: Kevon Priester
 ==================================================
 
 QUESTION 1: Did the ping to google.com succeed or fail in Host-Only mode?
