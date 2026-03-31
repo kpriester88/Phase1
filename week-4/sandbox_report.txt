@@ -1,0 +1,11 @@
+==================================================
+SESSION 10: SANDBOX DETONATION REPORT
+Operator: halfcursive
+==================================================
+
+QUESTION 1: Did the ping to google.com succeed or fail in Host-Only mode?
+ANSWER: The ping to google.com failed in Host-Only mode
+
+QUESTION 2: Why must a SOC analyst NEVER use "Bridged" mode when detonating unknown malware?
+ANSWER: A SOC analyst must never use Bridged mode when detonating unknown malware because it can infect and/or corrupt the host machine.
+Using the host-only mode creates an air gapped environment as a malware sandbox to safely run it. 
