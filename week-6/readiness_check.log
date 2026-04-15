@@ -1,0 +1,16 @@
+==================================================
+SESSION 16: READINESS INVENTORY
+==================================================
+Operator: [Kevon Priester]
+Date: [4/14/26]
+
+Confidence Audit (Yes/No):
+1. Nmap (Network Scanning): [Y]
+2. Docker (Containerization): [Y]
+3. Linux Hardening (UFW/chmod): [Y]
+4. VS Code Remote-SSH: [Y]
+
+Identify your weakest area and your plan to review it:
+[I would say my weakest area is Nmap and I plan to review it by using the Notebook LM to bolster my knowledge on how it is used when scanning for 
+vulnerabilites. I want to master the OSI Model for any and all instances I wil come across in my path to becoming a cybersecurity architect.]
+==================================================
