@@ -1,0 +1,19 @@
+==================================================
+SESSION 27: API SECURITY AUDIT LOG
+==================================================
+
+1. BOLA (ID SWAP) EXPLOITATION
+* Targeted User ID: 102
+* Private Information Leaked: {"email":"boss@titan.com","name":"CISO","role":"Admin","secret":"TITAN_MASTER_KEY_2026"}
+
+2. BUSINESS LOGIC EXPLOITATION (DISCOUNT HUNTER)
+* Hidden Discount Code Discovered: 9912
+* Method Used: I captured a legitimate POST request to the /api/v1/checkout endpoint using the Burp proxy. I verified the request structure to ensure the server accepted the JSON payload. 
+I specifically confirmed that the server required the Content-Type: application/json header to prevent a 415 Unsupported Media Type error.
+
+3. REMEDIATION RECOMMENDATION
+* How would you fix the BOLA vulnerability?
+Answer: When a request comes in for /api/v1/profile/102, the server should compare the requested ID (102) against the ID stored in the user's secure session object. If they do not match, the server must return a 403 Forbidden error.
+
+* How would you fix the Brute-Force vulnerability in the discount field?
+Answer: Configure the system to trigger an alert if the error log shows a spike in "Invalid Discount Code" responses, which is a clear indicator of an active brute-force attempt.
