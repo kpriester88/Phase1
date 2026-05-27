@@ -1,0 +1,5 @@
+Timestamp,Source IP,Event Type,Action,Description
+
+2026-04-30 06:18:00,198.51.100.44,Initial Access,External actor initiated connection to web server.
+2026-04-30 06:25:00,10.0.5.15,Lateral Movement,Detected Domain Admin activity on internal host.
+2026-04-30 06:45:00,10.0.5.15,Exfiltration,Anomalous outbound traffic detected from internal host.
