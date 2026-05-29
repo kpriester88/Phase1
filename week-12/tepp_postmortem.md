@@ -38,7 +38,6 @@ echo "requirepass Password123" >> /etc/redis.conf
 172.100.0.11:6379> 
 
 **After State:**
-[What did it look like after?]
 (error) NOAUTH Authentication required
 
 **Analysis:**
