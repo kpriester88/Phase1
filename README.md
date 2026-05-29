@@ -33,7 +33,7 @@ Phase1/
 
 | Week | Topics Covered | Status |
 |------|---------------|--------|
-| Week 1 | Linux CLI · File Permissions · Networking Commands · Kali Linux Setup | ✅ Complete |
+| Week 1 | Linux CLI · File Permissions · Networking Commands · Ubuntu Linux Setup | ✅ Complete |
 | Week 2 | Bash Scripting · Advanced Permissions · CTF Challenge | 🔄 In Progress |
 | Week 3 | TBD | ⏳ Upcoming |
 | Week 4 | TBD | ⏳ Upcoming |
