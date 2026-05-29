@@ -55,7 +55,7 @@ Phase1/
 
 **Focus:** Linux Operating System Fundamentals
 
-- ⚙️ Set up and navigated the **Kali Linux** environment
+- ⚙️ Set up and navigated the **Ubuntu Linux** environment
 - 📂 Practiced core **CLI commands** — `ls`, `cd`, `chmod`, `chown`, `grep`, `find`, `ps`, `netstat`
 - 🔐 Learned **file permissions and ownership** — read/write/execute, `chmod`, `chown`
 - 🌐 Executed essential **networking commands** — `ping`, `ifconfig`, `ip`, `nmap`, `traceroute`
