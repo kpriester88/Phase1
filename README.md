@@ -1,4 +1,4 @@
-# 🛡️ Cybersecurity Analyst Journey — kpriester88
+# 🛡️ Cybersecurity Analyst Journey — Kevon Priester
 
 > *Documenting my path from learner to defender, one week at a time.*
 
