@@ -91,8 +91,9 @@ World-writable permissions on /var/log create a severe security risk, as they al
 sudo iptables -A INPUT -s 172.80.0.1 -j DROP
 
 **SOC Analysis:**
+Relying solely on iptables for perimeter security is ineffective, as adaptive attackers can easily bypass static IP blocks via proxies or rotation. A robust defense requires a multi-layered approach, including strong authentication methods
+like MFA and public-key-only access to neutralize brute force attempts. Furthermore, integrating host based intrusion prevention systems like Fail2ban is essential to automate real-time threat response and enhance overall resilience. 
 
-Relying solely on iptables for perimeter security is ineffective, as adaptive attackers can easily bypass static IP blocks via proxies or rotation. A robust defense requires a multi-layered approach, including strong authentication methods like multi-factor authentication (MFA) and public-key-only access to neutralize brute-force attempts. Furthermore, integrating host-based intrusion prevention systems (HIPS) like Fail2ban is essential to automate real-time threat response and enhance overall resilience.
 ---
 
 ## Phase 3: Full Spectrum
@@ -114,8 +115,10 @@ Command injection occurs when an application insecurely passes unsanitized user 
 sudo iptables -A INPUT -p tcp --dport 80 -j DROP
 
 **Final Analytical Paragraph:**
+This analysis highlights that reactive host level defenses cannot compensate for fundamental architectural weaknesses, as perimeter firewalls remain ineffective against application layer exploits like remote code execution. Implementing secure by design
+principles-specifically robust input validation and the principle of least privilege- would have entirely prevented this breach. By enforcing strict input whitelisting and running application processes with minimal permissions, organizations
+can secure their runtime boundaries regardless of network exposure. 
 
-This analysis highlights that reactive host-level defenses cannot compensate for fundamental architectural weaknesses, as perimeter firewalls remain ineffective against application-layer exploits like remote code execution. Implementing secure-by-design principles—specifically robust input validation and the principle of least privilege—would have entirely prevented this breach. By enforcing strict input whitelisting and running application processes with minimal permissions, organizations can secure their runtime boundaries regardless of network exposure.
 ---
 
 ## References
